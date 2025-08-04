@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AxGuard - Smart Water System</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #0d0d0d;
+        color: #fff;
+        overflow: hidden;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 40px;
+        background-color: #111;
+      }
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .brand-name {
+        font-size: 1.4rem;
+        font-weight: bold;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+      }
+      nav a {
+        color: #ccc;
+        margin-right: 40px;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      nav a:hover {
+        color: #fff;
+      }
+      .btn-enter {
+        background-color: #2563eb;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .btn-enter:hover {
+        background-color: #1d4ed8;
+      }
+      .grid-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+        background-size: 40px 40px;
+        z-index: 0;
+      }
+      .content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        margin-top: 120px;
+      }
+      .content h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+      .content p {
+        color: #aaa;
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin: 0 auto 30px;
+      }
+      .launch-banner {
+        text-align: center;
+        color: #fff;
+        font-family: monospace;
+        font-size: 1rem;
+        height: 1rem;
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid-bg"></div>
+    <header>
+      <div class="logo-section">
+        <div class="logo">AX</div>
+        <span class="brand-name">AxGuard</span>
+      </div>
+
+      <nav>
+        <a href="#about">About</a>
+        <button class="btn-enter" onclick="goToAuth()">Login / Sign Up</button>
+      </nav>
+    </header>
+
+    <!-- ANIMATED BANNER -->
+    <div class="launch-banner" id="typewriter-container"></div>
+
+    <div class="content">
+      <h1>Welcome to AxGuard</h1>
+      <p>Smart IoT-Based Rainwater Harvesting & Quality Monitoring System.</p>
+      <button class="btn-enter" onclick="goToDashboard()">Enter Dashboard</button>
+    </div>
+
+    <script>
+      // Typewriter effect
+      function typeWriter() {
+        const text = "# Launching Soon";
+        const element = document.getElementById("typewriter-container");
+        let i = 0;
+
+        function type() {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, 100);
+          }
+        }
+        type();
+      }
+
+      // Go to login/signup page
+      function goToAuth() {
+        window.location.href = "signup.html";
+      }
+
+      // Go to dashboard or redirect to signup if not logged in
+      function goToDashboard() {
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        if (isLoggedIn === "true") {
+          window.location.href = "dashboard.html";
+        } else {
+          window.location.href = "signup.html";
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        typeWriter();
+      });
+
+      // About link functionality
+      document.querySelector('a[href="#about"]').addEventListener("click", (e) => {
+        e.preventDefault();
+        alert("About AxGuard: Smart IoT-Based Rainwater Harvesting & Quality Monitoring System designed to optimize water collection and ensure water quality through advanced sensor technology.");
+      });
+    </script>
+  </body>
+</html>
