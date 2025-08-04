@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AxGuard | Rainwater Harvesting</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background-color: rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #4f80ff, #6fa8ff);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 18px;
+      box-shadow: 0 4px 15px rgba(79, 128, 255, 0.3);
+    }
+
+    .brand-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, #ffffff, #b0c4de);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .back-link {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .back-link:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    h1 {
+      text-align: center;
+      margin: 2rem 0;
+      font-size: 2.5rem;
+      font-weight: 300;
+      background: linear-gradient(135deg, #ffffff, #00bcd4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .main-container {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 1fr;
+      max-width: 1600px;
+      margin: 0 auto;
+      gap: 3rem;
+      padding: 0 2rem;
+      align-items: start;
+    }
+
+    .left-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .center-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .virtual-tank {
+      width: 300px;
+      height: 450px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 3px solid #00bcd4;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 188, 212, 0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .tank-fill {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(to top, #0288d1, #4fc3f7, #81d4fa);
+      transition: height 1s ease-in-out;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .tank-status {
+      background: rgba(0,0,0,0.8);
+      padding: 1.5rem 2rem;
+      border-radius: 15px;
+      text-align: center;
+      border: 2px solid #00bcd4;
+      min-width: 300px;
+      backdrop-filter: blur(10px);
+    }
+
+    .status-text {
+      font-size: 1.1rem;
+      color: #4fc3f7;
+      margin-bottom: 0.5rem;
+    }
+
+    .water-amount {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    /* Blockchain Section Styles - Clean Version */
+    .blockchain-section {
+      background: rgba(0,0,0,0.9);
+      border: 2px solid #fdd835;
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(15px);
+      text-align: center;
+      min-width: 300px;
+      box-shadow: 0 15px 35px rgba(253, 216, 53, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blockchain-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(253, 216, 53, 0.1), transparent);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .blockchain-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #fdd835;
+    }
+
+    .blockchain-icon {
+      font-size: 2rem;
+      filter: drop-shadow(0 0 10px rgba(253, 216, 53, 0.5));
+    }
+
+    .wallet-status {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(253, 216, 53, 0.3);
+    }
+
+    .wallet-address {
+      font-size: 0.9rem;
+      color: #b0c4de;
+      margin-bottom: 0.5rem;
+    }
+
+    .token-balance {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #00bcd4;
+      text-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+    }
+
+    .blockchain-btn {
+      padding: 0.8rem 1.8rem;
+      background: linear-gradient(135deg, #fdd835, #fbc02d);
+      color: #000;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(253, 216, 53, 0.4);
+      width: 100%;
+      margin-bottom: 0.8rem;
+    }
+
+    .blockchain-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(253, 216, 53, 0.6);
+      background: linear-gradient(135deg, #ffeb3b, #fdd835);
+    }
+
+    .blockchain-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .blockchain-btn.connect {
+      background: linear-gradient(135deg, #00bcd4, #0288d1);
+      color: white;
+    }
+
+    .blockchain-btn.connect:hover {
+      background: linear-gradient(135deg, #26c6da, #00bcd4);
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 15px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .icon {
+      font-size: 1.5rem;
+    }
+
+    .rain-control {
+      text-align: center;
+    }
+
+    .rain-intensity {
+      margin: 1rem 0;
+      font-size: 1.1rem;
+      color: #4fc3f7;
+      font-weight: bold;
+    }
+
+    .slider {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.2);
+      outline: none;
+      -webkit-appearance: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #00bcd4;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+    }
+
+    .simulate-btn {
+      padding: 0.75rem 2rem;
+      background: linear-gradient(135deg, #00bcd4, #0288d1);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0, 188, 212, 0.3);
+      width: 100%;
+    }
+
+    .simulate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 188, 212, 0.4);
+    }
+
+    .simulate-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .forecast-text {
+      color: #4fc3f7;
+      font-weight: bold;
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+
+    .tip-content {
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 10px;
+      border-left: 4px solid #fdd835;
+    }
+
+    .tokens-card {
+      background: rgba(0,0,0,0.8);
+      border: 2px solid #00bcd4;
+      border-radius: 15px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    .tokens-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .token-count {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #00bcd4;
+    }
+
+    .notify {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #fdd835, #fbc02d);
+      color: #000;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(253, 216, 53, 0.4);
+      font-weight: bold;
+      display: none;
+      z-index: 1000;
+      animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .main-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        justify-items: center;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .virtual-tank {
+        width: 250px;
+        height: 380px;
+      }
+      
+      .tank-status, .blockchain-section {
+        min-width: 250px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .virtual-tank {
+        width: 220px;
+        height: 350px;
+      }
+      
+      .tank-status, .blockchain-section {
+        min-width: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-section">
+      <div class="logo">Ax</div>
+      <span class="brand-name">AxGuard</span>
+    </div>
+    <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+  </header>
+
+  <div class="notify" id="notification">
+    🌧️ Rain Detected! Harvesting system engaged.
+  </div>
+
+  <h1>Rainwater Harvesting Simulator</h1>
+
+  <div class="main-container">
+    <!-- Left Column -->
+    <div class="left-column">
+      <!-- Rain Simulation Control -->
+      <div class="card">
+        <div class="card-header">
+          <span class="icon">🌧️</span>
+          <span>Simulate Rain</span>
+        </div>
+        <div class="rain-control">
+          <div class="rain-intensity" id="rainIntensity">Moderate Rain</div>
+          <input type="range" min="1" max="3" value="2" class="slider" id="intensitySlider">
+          <button class="simulate-btn" id="simulateBtn" onclick="startRainSimulation()">
+            Start Rain Simulation
+          </button>
+        </div>
+      </div>
+
+      <!-- H2O Tokens -->
+      <div class="tokens-card">
+        <div class="tokens-header">
+          <div class="icon">🧊</div>
+          <div style="font-size: 1rem; opacity: 0.9;">H2O Tokens</div>
+        </div>
+        <div class="token-count" id="tokenCount">0</div>
+      </div>
+    </div>
+
+    <!-- Center Column -->
+    <div class="center-column">
+      <!-- Tank Visual -->
+      <div class="virtual-tank" id="tank">
+        <div class="tank-fill" id="fill" style="height: 0%;"></div>
+      </div>
+      
+      <div class="tank-status">
+        <div class="status-text" id="statusText">Waiting for rain...</div>
+        <div class="water-amount">
+          Estimated Water Collected: <span id="waterLitres">0</span> ml
+        </div>
+      </div>
+
+      <!-- Clean Blockchain Section -->
+      <div class="blockchain-section">
+        <div class="blockchain-header">
+          <span class="blockchain-icon">⛓️</span>
+          <span>RainChain Rewards</span>
+        </div>
+        
+        <div class="wallet-status">
+          <div class="wallet-address" id="connectionStatus">Not Connected</div>
+          <div class="token-balance">Balance: <span id="balance">-- H2O</span></div>
+        </div>
+
+        <button id="connectBtn" class="blockchain-btn connect" onclick="connectWalletUI()">
+          🔗 Connect Wallet
+        </button>
+        <button id="mintBtn" class="blockchain-btn" onclick="mintTokensUI()" disabled>
+          💧 Claim 10 H2O Tokens
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="right-column">
+      <!-- AI Forecast -->
+      <div class="card">
+        <div class="card-header">
+          <span class="icon">☁️</span>
+          <span>Smart Forecast</span>
+        </div>
+        <div class="forecast-text" id="forecastText">
+          The tank will fill in about<br>1 hour and 30 minutes.
+        </div>
+      </div>
+
+      <!-- Water Savings -->
+      <div class="card">
+        <div class="card-header">
+          <span class="icon">💧</span>
+          <span>Water Savings</span>
+        </div>
+        <p>Suggestion: Use the harvested water for garden irrigation</p>
+        <div class="tip-content">
+          <strong>💡 Tip:</strong> Cleaning your catchment area before rainfall ensures better water quality!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const fillElement = document.getElementById("fill");
+    const waterLitres = document.getElementById("waterLitres");
+    const statusText = document.getElementById("statusText");
+    const notify = document.getElementById("notification");
+    const forecastText = document.getElementById("forecastText");
+    const tokenCount = document.getElementById("tokenCount");
+    const intensitySlider = document.getElementById("intensitySlider");
+    const rainIntensity = document.getElementById("rainIntensity");
+    const simulateBtn = document.getElementById("simulateBtn");
+
+    const TOTAL_CAPACITY = 250; // ml
+    let currentTankLevel = 0; // Starting empty
+    let isSimulating = false;
+    let hasAutoSimulated = false;
+
+    // Rain intensity options
+    const intensityOptions = {
+      1: { name: "Light Rain", multiplier: 0.6, duration: 15000 },
+      2: { name: "Moderate Rain", multiplier: 1.0, duration: 10000 },
+      3: { name: "Heavy Rain", multiplier: 1.4, duration: 7000 }
+    };
+
+    // Update rain intensity display
+    intensitySlider.addEventListener('input', function() {
+      const intensity = intensityOptions[this.value];
+      rainIntensity.textContent = intensity.name;
+    });
+
+    // Auto-simulation on page load (runs once)
+    setTimeout(() => {
+      if (!hasAutoSimulated) {
+        autoSimulateRain();
+      }
+    }, 10000); // Wait 10 seconds after page load
+
+    function autoSimulateRain() {
+      hasAutoSimulated = true;
+      isSimulating = true;
+      
+      // Show rain notification
+      notify.style.display = 'block';
+      statusText.textContent = "Rain Detected! Collecting...";
+      
+      // Hide notification after 4 seconds
+      setTimeout(() => {
+        notify.style.display = 'none';
+      }, 4000);
+      
+      // Simulate rain collection to 150ml over 12 seconds
+      let animationLevel = 0;
+      const targetLevel = 150;
+      const duration = 12000; // 12 seconds
+      
+      const fillInterval = setInterval(() => {
+        animationLevel += targetLevel / (duration / 100);
+        
+        if (animationLevel >= targetLevel) {
+          animationLevel = targetLevel;
+          currentTankLevel = targetLevel;
+          clearInterval(fillInterval);
+          
+          // Auto-simulation complete
+          statusText.textContent = "Rain Ended. Collection Complete.";
+          isSimulating = false;
+          
+          // Update tokens
+          const tokens = Math.floor(currentTankLevel / 2);
+          tokenCount.textContent = tokens;
+          
+          // Auto-mint if connected
+          if (mockBlockchain.connected) {
+            autoMintTokens(tokens);
+          }
+        }
+        
+        // Update UI
+        const percentage = (animationLevel / TOTAL_CAPACITY) * 100;
+        fillElement.style.height = percentage + "%";
+        waterLitres.textContent = Math.round(animationLevel);
+        
+      }, 100);
+    }
+
+    function startRainSimulation() {
+      if (isSimulating) return;
+      
+      // Reset tank for new simulation
+      currentTankLevel = 0;
+      updateDisplay();
+      
+      isSimulating = true;
+      simulateBtn.disabled = true;
+      simulateBtn.textContent = "Simulating...";
+      
+      const intensity = intensityOptions[intensitySlider.value];
+      const targetLevel = Math.min(150 * intensity.multiplier, TOTAL_CAPACITY);
+      
+      // Show rain notification
+      notify.style.display = 'block';
+      statusText.textContent = "Rain Detected! Collecting...";
+      
+      // Hide notification after 4 seconds
+      setTimeout(() => {
+        notify.style.display = 'none';
+      }, 4000);
+      
+      // Animate tank filling
+      let animationLevel = 0;
+      const fillInterval = setInterval(() => {
+        animationLevel += targetLevel / (intensity.duration / 100);
+        
+        if (animationLevel >= targetLevel) {
+          animationLevel = targetLevel;
+          currentTankLevel = targetLevel;
+          clearInterval(fillInterval);
+          
+          // Simulation complete
+          statusText.textContent = "Rain Ended. Collection Complete.";
+          simulateBtn.disabled = false;
+          simulateBtn.textContent = "Start Rain Simulation";
+          isSimulating = false;
+          
+          // Update tokens (1 token per 2ml collected)
+          const tokens = Math.floor(currentTankLevel / 2);
+          tokenCount.textContent = tokens;
+          
+          // Auto-mint if connected
+          if (mockBlockchain.connected) {
+            autoMintTokens(tokens);
+          }
+        }
+        
+        // Update UI
+        const percentage = (animationLevel / TOTAL_CAPACITY) * 100;
+        fillElement.style.height = percentage + "%";
+        waterLitres.textContent = Math.round(animationLevel);
+        
+      }, 100);
+    }
+
+    // Show initial forecast
+    setTimeout(() => {
+      const forecasts = [
+        "Rain expected in 24 hours. Prep your system!",
+        "Next rainfall: moderate showers in 3 days",
+        "Dry spell for 5 days. Use stored water wisely.",
+        "Heavy rain likely this evening. Ensure tank isn't full.",
+        "The tank will fill in about<br>1 hour and 30 minutes."
+      ];
+      const forecast = forecasts[Math.floor(Math.random() * forecasts.length)];
+      forecastText.innerHTML = forecast;
+    }, 2000);
+
+    // Initial setup
+    updateDisplay();
+
+    function updateDisplay() {
+      const percentage = (currentTankLevel / TOTAL_CAPACITY) * 100;
+      fillElement.style.height = percentage + "%";
+      waterLitres.textContent = Math.round(currentTankLevel);
+      statusText.textContent = currentTankLevel > 0 ? 
+        `Tank Level: ${Math.round(percentage)}%` : 
+        "Waiting for rain...";
+      tokenCount.textContent = Math.floor(currentTankLevel / 2); // 1 token per 2ml
+    }
+  </script>
+
+  <script>
+    // Mock blockchain implementation (replaces the ethers.js module)
+    const mockBlockchain = {
+      ledger: [],
+      balances: {},
+      connected: false,
+      currentUser: null,
+      
+      init: function() {
+        // Initialize with some mock data
+        this.ledger = JSON.parse(localStorage.getItem('mockBlockchain')) || [];
+        this.balances = JSON.parse(localStorage.getItem('mockBalances')) || {};
+        console.log("Mock blockchain initialized");
+      },
+      
+      connectWallet: async function() {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            this.connected = true;
+            this.currentUser = `0x${Math.random().toString(16).substr(2, 40)}`;
+            this.balances[this.currentUser] = this.balances[this.currentUser] || 0;
+            resolve(this.currentUser);
+          }, 1000); // Simulate async connection
+        });
+      },
+      
+      mintTokens: async function(amount) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            if (!this.connected) throw new Error("Wallet not connected");
+            
+            this.balances[this.currentUser] = (this.balances[this.currentUser] || 0) + amount;
+            
+            // Create a mock transaction
+            const tx = {
+              hash: `0x${Math.random().toString(16).substr(2, 64)}`,
+              from: "0x0000000000000000000000000000000000000000",
+              to: this.currentUser,
+              amount: amount,
+              timestamp: new Date().toISOString()
+            };
+            
+            this.ledger.push(tx);
+            this.saveToStorage();
+            resolve(tx);
+          }, 1500); // Simulate blockchain delay
+        });
+      },
+      
+      getBalance: async function() {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            if (!this.connected) throw new Error("Wallet not connected");
+            resolve(this.balances[this.currentUser] || 0);
+          }, 500);
+        });
+      },
+      
+      saveToStorage: function() {
+        localStorage.setItem('mockBlockchain', JSON.stringify(this.ledger));
+        localStorage.setItem('mockBalances', JSON.stringify(this.balances));
+      }
+    };
+
+    // Initialize mock blockchain on page load
+    mockBlockchain.init();
+    
+    // UI Functions that replace the ethers.js implementation
+    window.connectWalletUI = async function() {
+      const connectBtn = document.getElementById("connectBtn");
+      const statusEl = document.getElementById("connectionStatus");
+      
+      try {
+        connectBtn.textContent = "🔄 Connecting...";
+        connectBtn.disabled = true;
+
+        const address = await mockBlockchain.connectWallet();
+        
+        statusEl.textContent = `Connected: ${address.slice(0, 6)}...${address.slice(-4)}`;
+        connectBtn.textContent = "✅ Wallet Connected";
+        connectBtn.style.background = "linear-gradient(135deg, #4caf50, #45a049)";
+        
+        document.getElementById("mintBtn").disabled = false;
+        await updateBalance();
+      } catch (error) {
+        alert("Failed to connect wallet: " + error.message);
+        connectBtn.textContent = "🔗 Connect Wallet";
+        connectBtn.disabled = false;
+      }
+    }
+
+    window.mintTokensUI = async function() {
+      if (!mockBlockchain.connected) {
+        alert("Please connect your wallet first!");
+        return;
+      }
+
+      const mintBtn = document.getElementById("mintBtn");
+      try {
+        mintBtn.textContent = "⏳ Minting...";
+        mintBtn.disabled = true;
+        
+        await mockBlockchain.mintTokens(10);
+        
+        mintBtn.textContent = "✅ Tokens Minted!";
+        setTimeout(() => {
+          mintBtn.textContent = "💧 Claim 10 H2O Tokens";
+          mintBtn.disabled = false;
+        }, 2000);
+        await updateBalance();
+      } catch (error) {
+        alert("Minting failed: " + error.message);
+        mintBtn.textContent = "💧 Claim 10 H2O Tokens";
+        mintBtn.disabled = false;
+      }
+    }
+
+    window.autoMintTokens = async function(amount) {
+      if (!mockBlockchain.connected) return;
+      
+      try {
+        await mockBlockchain.mintTokens(amount);
+        showNotification(`🌧️ Auto-minted ${amount} H2O tokens from rain collection!`);
+        await updateBalance();
+      } catch (error) {
+        console.error("Auto-mint failed:", error);
+      }
+    }
+
+    async function updateBalance() {
+      try {
+        const balance = await mockBlockchain.getBalance();
+        document.getElementById("balance").innerText = `${balance} H2O`;
+      } catch (err) {
+        console.error("Failed to fetch balance:", err);
+      }
+    }
+
+    function showNotification(message) {
+      const notification = document.getElementById("notification");
+      notification.textContent = message;
+      notification.style.display = 'block';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 4000);
+    }
+
+    // Auto-connect if previously connected
+    window.addEventListener("load", async () => {
+      if (localStorage.getItem('mockBlockchain') && localStorage.getItem('mockBalances')) {
+        await connectWalletUI();
+      }
+    });
+  </script>
+</body>
+</html>
