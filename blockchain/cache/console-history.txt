@@ -1,0 +1,13 @@
+const token = await ethers.getContractAt("H2OToken", "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0");
+.help
+npx hardhat console --network localhost
+h2o.target
+npx hardhat console --network localhost
+h2o.target
+(await token.totalSupply()).toString();             // should be "100"
+(await token.balanceOf(user1.address)).toString();  // should be "100"
+// Check balances
+await token.mint(user1.address, 100);
+// Mint 100 tokens to user1
+const token = await ethers.getContractAt("H2OToken", "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0");
+const [owner, user1] = await ethers.getSigners();
