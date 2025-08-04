@@ -1,4 +1,4 @@
-<img width="373" height="95" alt="image" src="https://github.com/user-attachments/assets/c90a018c-cb0b-454a-b943-45fe24fee7f3" /># Rain-Water-harvesting---Blockchain-Incentivization---Quality-Monitoring-Systme
+# Rain-Water-harvesting---Blockchain-Incentivization---Quality-Monitoring-Systme
 AxGuard is a cutting-edge security framework designed to protect modern applications from vulnerabilities, unauthorized access, and malicious attacks. Built with a focus on simplicity and efficiency, AxGuard integrates seamlessly into your development workflow, offering robust encryption, authentication, and threat detection mechanisms.
 
 Key Features: 
